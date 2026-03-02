@@ -13,28 +13,26 @@
 
 ## Screenshots
 
-| Dashboard | User Management |
-|-----------|----------------|
+| Dashboard                                    | User Management                      |
+| -------------------------------------------- | ------------------------------------ |
 | ![Dashboard](docs/screenshots/dashboard.png) | ![Users](docs/screenshots/users.png) |
 
-| Analytics | Settings (Dark Mode) |
-|-----------|---------------------|
-| ![Analytics](docs/screenshots/analytics.png) | ![Settings](docs/screenshots/settings-dark.png) |
-
-> Screenshots coming after deployment. Run locally to preview.
+| Analytics                                    | Settings                                    |
+| -------------------------------------------- | ------------------------------------------- |
+| ![Analytics](docs/screenshots/analytics.png) | ![Settings](docs/screenshots/settings1.png) |
 
 ## Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| **Framework** | Angular 18.2 with Signals & Standalone Components |
-| **State Management** | NgRx Signal Store with computed selectors |
-| **UI Library** | Angular Material with Material Design 3 theming |
-| **Charts** | Chart.js via ng2-charts (line, bar, doughnut) |
-| **Forms** | Reactive Forms with custom validators |
-| **Styling** | SCSS with M3 CSS custom properties |
-| **Testing** | Jest with 95%+ coverage |
-| **Package Manager** | PNPM |
+| Category             | Technology                                        |
+| -------------------- | ------------------------------------------------- |
+| **Framework**        | Angular 18.2 with Signals & Standalone Components |
+| **State Management** | NgRx Signal Store with computed selectors         |
+| **UI Library**       | Angular Material with Material Design 3 theming   |
+| **Charts**           | Chart.js via ng2-charts (line, bar, doughnut)     |
+| **Forms**            | Reactive Forms with custom validators             |
+| **Styling**          | SCSS with M3 CSS custom properties                |
+| **Testing**          | Jest with 95%+ coverage                           |
+| **Package Manager**  | PNPM                                              |
 
 ## Architecture
 
@@ -122,10 +120,10 @@ pnpm build          # Production build
 
 ### Demo Credentials
 
-| Field | Value |
-|-------|-------|
-| Email | `admin@demo.com` |
-| Password | `password` |
+| Field    | Value            |
+| -------- | ---------------- |
+| Email    | `admin@demo.com` |
+| Password | `password`       |
 
 ## Testing
 
@@ -134,12 +132,12 @@ pnpm test              # 363 tests across 42 suites
 pnpm test:coverage     # Full coverage report
 ```
 
-| Metric | Coverage |
-|--------|----------|
-| Statements | 95.91% |
-| Branches | 84.54% |
-| Functions | 93.06% |
-| Lines | 95.84% |
+| Metric     | Coverage |
+| ---------- | -------- |
+| Statements | 95.91%   |
+| Branches   | 84.54%   |
+| Functions  | 93.06%   |
+| Lines      | 95.84%   |
 
 All NgRx Signal Stores, services, guards, interceptors, resolvers, and components are covered.
 

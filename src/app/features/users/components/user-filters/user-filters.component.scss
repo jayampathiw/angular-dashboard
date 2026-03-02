@@ -1,6 +1,6 @@
 .filters {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
 }
@@ -16,6 +16,7 @@
 
 .filter-clear {
   height: 56px;
+  margin-top: 4px;
 }
 
 @media (max-width: 767px) {
