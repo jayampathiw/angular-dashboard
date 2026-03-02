@@ -9,7 +9,7 @@
 [![Test Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen?style=flat-square)](.)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-<!-- [Live Demo](https://angular-dashboard.vercel.app) -->
+[Live Demo](https://angular-dashboard-jayampathyws-projects.vercel.app)
 
 ## Screenshots
 
