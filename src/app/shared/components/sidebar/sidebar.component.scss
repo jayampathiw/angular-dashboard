@@ -1,0 +1,127 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  height: 100%;
+  background: var(--bg-surface);
+  overflow: hidden;
+  transition: width 200ms ease;
+
+  &.collapsed {
+    width: var(--sidebar-collapsed-width);
+  }
+}
+
+// ── Header (logo + app name) ──────────────────────────────────
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--border-color);
+
+  .logo-icon {
+    color: var(--color-primary);
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .app-name {
+    font-size: 16px; // M3 title-medium
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+}
+
+// ── Navigation list ───────────────────────────────────────────
+.nav-list {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+
+  a[mat-list-item] {
+    border-radius: var(--radius-md);
+    margin-bottom: 4px;
+    height: 44px;
+    color: var(--text-secondary);
+    overflow: visible;
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast);
+
+    mat-icon {
+      color: var(--text-secondary);
+      margin-right: 12px;
+    }
+
+    // Hover state
+    &:hover {
+      background: var(--bg-surface-hover);
+    }
+
+    // Focus visible (keyboard nav)
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+
+    // Active route
+    &.active {
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+
+      mat-icon {
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+// ── Badge ─────────────────────────────────────────────────────
+.badge {
+  margin-left: auto;
+  background: var(--color-danger);
+  color: var(--color-on-danger);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  line-height: 1;
+}
+
+// ── Footer (collapse toggle) ─────────────────────────────────
+.sidebar-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+// ── Collapsed state ──────────────────────────────────────────
+.sidebar.collapsed {
+  .sidebar-header {
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  .nav-list {
+    padding: 8px 4px;
+
+    a[mat-list-item] {
+      justify-content: center;
+      padding: 0;
+
+      mat-icon {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    justify-content: center;
+  }
+}

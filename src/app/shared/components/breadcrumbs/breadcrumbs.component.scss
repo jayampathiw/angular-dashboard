@@ -1,0 +1,38 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 12px; // M3 body-small
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.breadcrumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.separator {
+  color: var(--text-muted);
+  font-size: 11px; // M3 label-small — smaller than links for visual hierarchy
+}
+
+.breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

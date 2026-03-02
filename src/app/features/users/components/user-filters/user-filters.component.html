@@ -1,0 +1,40 @@
+<div class="filters">
+  <mat-form-field appearance="outline" class="filter-search">
+    <mat-icon matPrefix>search</mat-icon>
+    <mat-label>Search users</mat-label>
+    <input
+      matInput
+      [value]="searchValue()"
+      (input)="onSearchInput($any($event.target).value)"
+      placeholder="Name, email, or department" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-select">
+    <mat-label>Role</mat-label>
+    <mat-select [value]="roleValue()" (selectionChange)="onRoleChange($event.value)">
+      <mat-option value="">All Roles</mat-option>
+      @for (role of roles; track role.value) {
+        <mat-option [value]="role.value">{{ role.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-select">
+    <mat-label>Status</mat-label>
+    <mat-select [value]="statusValue()" (selectionChange)="onStatusChange($event.value)">
+      <mat-option value="">All Statuses</mat-option>
+      @for (status of statuses; track status.value) {
+        <mat-option [value]="status.value">{{ status.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    mat-stroked-button
+    class="filter-clear"
+    (click)="clearFilters()"
+    aria-label="Clear all filters">
+    <mat-icon>filter_list_off</mat-icon>
+    Clear
+  </button>
+</div>

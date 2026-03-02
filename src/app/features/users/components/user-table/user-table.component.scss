@@ -1,0 +1,110 @@
+.table-container {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+}
+
+// ── Name cell ───────────────────────────────────────────────
+.user-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+// ── Badges ──────────────────────────────────────────────────
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.role-admin {
+  background: var(--mat-sys-primary-container, #d3e3fd);
+  color: var(--mat-sys-on-primary-container, #041e49);
+}
+
+.role-editor {
+  background: var(--mat-sys-tertiary-container, #ffd8e4);
+  color: var(--mat-sys-on-tertiary-container, #31111d);
+}
+
+.role-viewer {
+  background: var(--mat-sys-surface-variant, #e1e2ec);
+  color: var(--mat-sys-on-surface-variant, #44474f);
+}
+
+.status-active {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.status-inactive {
+  background: var(--mat-sys-surface-variant, #e1e2ec);
+  color: var(--mat-sys-on-surface-variant, #44474f);
+}
+
+.status-suspended {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+// ── Actions ─────────────────────────────────────────────────
+.action-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.action-delete {
+  color: var(--mat-sys-error, #ba1a1a);
+}
+
+// ── Table overrides ─────────────────────────────────────────
+:host ::ng-deep {
+  .mat-mdc-header-cell {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .mat-mdc-cell {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-row:hover {
+    background: var(--mat-sys-surface-container-low, #f5f5f5);
+  }
+}
+
+// ── Avatar colors (deterministic from ID) ───────────────────
+$avatar-colors: #1976d2, #388e3c, #e64a19, #7b1fa2, #c2185b, #00796b;
+
+@function avatar-color-for-user($id) {
+  @return nth($avatar-colors, ($id % length($avatar-colors)) + 1);
+}

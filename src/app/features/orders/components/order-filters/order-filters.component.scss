@@ -1,0 +1,32 @@
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-search {
+  flex: 1;
+  min-width: 240px;
+}
+
+.filter-select {
+  min-width: 170px;
+}
+
+.filter-clear {
+  height: 56px;
+}
+
+@media (max-width: 767px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-search,
+  .filter-select {
+    min-width: unset;
+    width: 100%;
+  }
+}

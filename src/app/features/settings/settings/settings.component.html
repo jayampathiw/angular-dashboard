@@ -1,0 +1,44 @@
+<div class="settings-page">
+  <div class="page-header">
+    <h1 class="page-title">Settings</h1>
+    <p class="page-subtitle">Manage your profile, notifications, and preferences</p>
+  </div>
+
+  <mat-tab-group class="settings-tabs" animationDuration="200ms">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>person</mat-icon>
+        Profile
+      </ng-template>
+      <div class="tab-content">
+        <app-profile-form
+          [profile]="profile()"
+          (profileSaved)="onProfileSaved($event)" />
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>notifications</mat-icon>
+        Notifications
+      </ng-template>
+      <div class="tab-content">
+        <app-notification-prefs
+          [prefs]="notifications()"
+          (prefsChanged)="onNotificationsChanged($event)" />
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>palette</mat-icon>
+        Appearance
+      </ng-template>
+      <div class="tab-content">
+        <app-appearance-settings
+          [isDarkMode]="isDarkMode()"
+          (themeToggled)="onThemeToggled()" />
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

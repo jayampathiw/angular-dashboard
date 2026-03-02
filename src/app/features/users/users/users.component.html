@@ -1,0 +1,49 @@
+<div class="users-page">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class="page-title">Users</h1>
+      <p class="page-subtitle">
+        {{ store.totalFilteredCount() }} of {{ store.totalCount() }} users
+      </p>
+    </div>
+    <div class="page-header-actions">
+      @if (store.hasSelection()) {
+        <button
+          mat-stroked-button
+          color="warn"
+          (click)="onDeleteSelected()"
+          class="bulk-delete-btn">
+          <mat-icon>delete</mat-icon>
+          Delete {{ store.selectedCount() }} selected
+        </button>
+      }
+      <button mat-flat-button color="primary" (click)="openCreateDialog()">
+        <mat-icon>person_add</mat-icon>
+        Add User
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <app-user-filters
+    (filterChanged)="onFilterChanged($event)"
+    (filtersCleared)="onFiltersCleared()" />
+
+  <!-- Table -->
+  <div class="table-card">
+    <app-user-table
+      [users]="store.paginatedUsers()"
+      [totalCount]="store.totalFilteredCount()"
+      [pageIndex]="store.table().pageIndex"
+      [pageSize]="store.table().pageSize"
+      [selectedIds]="store.selectedIds()"
+      [allPageSelected]="store.allPageSelected()"
+      (sortChanged)="onSortChanged($event)"
+      (pageChanged)="onPageChanged($event)"
+      (selectionToggled)="onSelectionToggled($event)"
+      (pageSelectionToggled)="onPageSelectionToggled()"
+      (editRequested)="onEditRequested($event)"
+      (deleteRequested)="onDeleteRequested($event)" />
+  </div>
+</div>

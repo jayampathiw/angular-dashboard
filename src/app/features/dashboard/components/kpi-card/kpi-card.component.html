@@ -1,0 +1,16 @@
+<div class="kpi-card">
+  <div class="kpi-header">
+    <div class="kpi-icon-wrapper">
+      <mat-icon>{{ metric().icon }}</mat-icon>
+    </div>
+    <span class="kpi-label">{{ metric().label }}</span>
+  </div>
+
+  <div class="kpi-value">{{ formattedValue() }}</div>
+
+  <div class="kpi-trend" [class]="metric().trend">
+    <mat-icon class="trend-icon">{{ trendIcon() }}</mat-icon>
+    <span class="trend-value">{{ metric().trendValue }}%</span>
+    <span class="trend-label">vs last month</span>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+.table-container {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+}
+
+// ── Order number ────────────────────────────────────────────
+.order-number {
+  font-weight: 600;
+  font-family: monospace;
+  color: var(--mat-sys-primary);
+}
+
+// ── Customer cell ───────────────────────────────────────────
+.customer-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customer-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.customer-email {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+// ── Amount ──────────────────────────────────────────────────
+.amount {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+// ── Status badges ───────────────────────────────────────────
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.badge-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.status-pending {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.status-processing {
+  background: var(--mat-sys-primary-container, #d3e3fd);
+  color: var(--mat-sys-on-primary-container, #041e49);
+}
+
+.status-shipped {
+  background: var(--mat-sys-tertiary-container, #ffd8e4);
+  color: var(--mat-sys-on-tertiary-container, #31111d);
+}
+
+.status-delivered {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.status-cancelled {
+  background: var(--mat-sys-error-container, #f9dedc);
+  color: var(--mat-sys-on-error-container, #410e0b);
+}
+
+// ── Table overrides ─────────────────────────────────────────
+:host ::ng-deep {
+  .mat-mdc-header-cell {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .mat-mdc-cell {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-row:hover {
+    background: var(--mat-sys-surface-container-low, #f5f5f5);
+  }
+}

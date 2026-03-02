@@ -1,0 +1,30 @@
+<div class="dashboard">
+  <!-- KPI Cards Row -->
+  <section class="kpi-row">
+    @for (metric of store.kpis(); track metric.id) {
+      <app-kpi-card [metric]="metric" />
+    }
+  </section>
+
+  <!-- Revenue Chart (Full Width) -->
+  <section class="chart-full">
+    <app-revenue-chart
+      [data]="store.revenueData()"
+      [isDarkMode]="themeService.isDarkMode()" />
+  </section>
+
+  <!-- Secondary Charts Row -->
+  <section class="charts-row">
+    <app-category-chart
+      [data]="store.categoryData()"
+      [isDarkMode]="themeService.isDarkMode()" />
+    <app-distribution-chart
+      [data]="store.distributionData()"
+      [isDarkMode]="themeService.isDarkMode()" />
+  </section>
+
+  <!-- Activity Feed -->
+  <section class="activity-section">
+    <app-activity-feed [items]="store.recentActivities()" />
+  </section>
+</div>

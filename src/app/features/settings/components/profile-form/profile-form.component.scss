@@ -1,0 +1,29 @@
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 600px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+@media (max-width: 599px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

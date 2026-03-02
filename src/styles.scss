@@ -1,0 +1,128 @@
+@use "@angular/material" as mat;
+
+// ── M3 Theme ───────────────────────────────────────────────────
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (scale: 0),
+));
+
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (scale: 0),
+));
+
+// ── Base styles (CDK overlay, a11y, ripple) ────────────────────
+@include mat.core();
+
+// ── Apply Material themes ──────────────────────────────────────
+html {
+  @include mat.all-component-themes($theme);
+  color-scheme: light;
+}
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  color-scheme: dark;
+}
+
+// ── Alias Layer: map custom vars → M3 design tokens ────────────
+:root {
+  // Layout dimensions
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 68px;
+  --header-height: 64px;
+
+  // Brand colors (extracted from Azure M3 light palette)
+  --color-primary: #{mat.get-theme-color($theme, primary)};
+  --color-primary-light: #{mat.get-theme-color($theme, primary-container)};
+
+  // Semantic colors (from M3 error tokens)
+  --color-danger: #{mat.get-theme-color($theme, error)};
+  --color-danger-light: #{mat.get-theme-color($theme, error-container)};
+  --color-on-danger: #{mat.get-theme-color($theme, on-error)};
+
+  // Extended semantic colors (custom — no M3 equivalent)
+  --color-success: #2e7d32;
+  --color-success-light: #e8f5e9;
+  --color-warning: #e65100;
+  --color-warning-light: #fff3e0;
+
+  // Backgrounds (from M3 surface tokens)
+  --bg-page: #{mat.get-theme-color($theme, surface)};
+  --bg-surface: #{mat.get-theme-color($theme, surface-container-low)};
+  --bg-surface-hover: #{mat.get-theme-color($theme, surface-container)};
+
+  // Text (from M3 on-surface tokens)
+  --text-primary: #{mat.get-theme-color($theme, on-surface)};
+  --text-secondary: #{mat.get-theme-color($theme, on-surface-variant)};
+  --text-muted: #{mat.get-theme-color($theme, outline)};
+
+  // Borders
+  --border-color: #{mat.get-theme-color($theme, outline-variant)};
+
+  // Border radius
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  // Transitions
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+// Dark-mode overrides
+.dark-theme {
+  --color-primary: #{mat.get-theme-color($dark-theme, primary)};
+  --color-primary-light: #{mat.get-theme-color($dark-theme, primary-container)};
+
+  --bg-page: #{mat.get-theme-color($dark-theme, surface)};
+  --bg-surface: #{mat.get-theme-color($dark-theme, surface-container-low)};
+  --bg-surface-hover: #{mat.get-theme-color($dark-theme, surface-container)};
+
+  --text-primary: #{mat.get-theme-color($dark-theme, on-surface)};
+  --text-secondary: #{mat.get-theme-color($dark-theme, on-surface-variant)};
+  --text-muted: #{mat.get-theme-color($dark-theme, outline)};
+
+  --border-color: #{mat.get-theme-color($dark-theme, outline-variant)};
+
+  --color-danger: #{mat.get-theme-color($dark-theme, error)};
+  --color-danger-light: #{mat.get-theme-color($dark-theme, error-container)};
+  --color-on-danger: #{mat.get-theme-color($dark-theme, on-error)};
+
+  --color-success: #66bb6a;
+  --color-success-light: rgba(102, 187, 106, 0.12);
+  --color-warning: #ffa726;
+  --color-warning-light: rgba(255, 167, 38, 0.12);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+}

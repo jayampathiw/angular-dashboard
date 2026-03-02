@@ -1,0 +1,37 @@
+<nav class="sidebar" [class.collapsed]="isCollapsed()">
+  <!-- Logo / App name -->
+  <div class="sidebar-header">
+    <mat-icon class="logo-icon">grid_view</mat-icon>
+    @if (!isCollapsed()) {
+      <span class="app-name">NG Dashboard</span>
+    }
+  </div>
+
+  <!-- Navigation items -->
+  <mat-nav-list class="nav-list">
+    @for (item of navItems; track item.route) {
+      <a
+        mat-list-item
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [matTooltip]="isCollapsed() ? item.label : ''"
+        matTooltipPosition="right"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        @if (!isCollapsed()) {
+          <span matListItemTitle>{{ item.label }}</span>
+        }
+        @if (item.badge && !isCollapsed()) {
+          <span matListItemMeta class="badge">{{ item.badge }}</span>
+        }
+      </a>
+    }
+  </mat-nav-list>
+
+  <!-- Collapse toggle button -->
+  <div class="sidebar-footer">
+    <button mat-icon-button (click)="toggleCollapse()">
+      <mat-icon>{{ isCollapsed() ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
+  </div>
+</nav>

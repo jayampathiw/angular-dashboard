@@ -1,0 +1,56 @@
+<mat-toolbar class="header">
+  <!-- Hamburger menu toggle -->
+  <button mat-icon-button (click)="menuToggle.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Spacer -->
+  <div class="spacer"></div>
+
+  <!-- Search -->
+  <button mat-icon-button aria-label="Search">
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <!-- Notifications -->
+  <button mat-icon-button aria-label="Notifications - 3 unread">
+    <mat-icon matBadge="3" matBadgeSize="small" matBadgeColor="warn">
+      notifications
+    </mat-icon>
+  </button>
+
+  <!-- Theme toggle -->
+  <button
+    mat-icon-button
+    (click)="themeService.toggleTheme()"
+    [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+  >
+    <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+
+  <!-- User menu -->
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-avatar">
+    <span class="avatar-initials">{{ userInitials() }}</span>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <div class="user-info" mat-menu-item disabled>
+      <span class="user-name">{{ userFullName() }}</span>
+      <span class="user-role">{{ authService.currentUser()?.role }}</span>
+    </div>
+    <mat-divider />
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <mat-divider />
+    <button mat-menu-item (click)="authService.logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

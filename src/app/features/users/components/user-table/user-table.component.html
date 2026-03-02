@@ -1,0 +1,111 @@
+<div class="table-container">
+  <table
+    mat-table
+    [dataSource]="users()"
+    matSort
+    (matSortChange)="onSortChange($event)"
+    class="users-table">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          [checked]="allPageSelected()"
+          [indeterminate]="selectedIds().size > 0 && !allPageSelected()"
+          (change)="pageSelectionToggled.emit()"
+          aria-label="Select all users on this page" />
+      </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox
+          [checked]="isSelected(user.id)"
+          (change)="selectionToggled.emit(user.id)"
+          [attr.aria-label]="'Select ' + user.firstName + ' ' + user.lastName" />
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastName">Name</th>
+      <td mat-cell *matCellDef="let user">
+        <div class="user-name-cell">
+          <span class="user-avatar" [style.background]="getAvatarColor(user.id)">
+            {{ user.avatar }}
+          </span>
+          <span class="user-name">{{ user.firstName }} {{ user.lastName }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="email">Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <!-- Role Column -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="role">Role</th>
+      <td mat-cell *matCellDef="let user">
+        <span class="badge" [class]="roleConfig[user.role].class">
+          {{ roleConfig[user.role].label }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Department Column -->
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="department">Department</th>
+      <td mat-cell *matCellDef="let user">{{ user.department }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="status">Status</th>
+      <td mat-cell *matCellDef="let user">
+        <span class="badge" [class]="statusConfig[user.status].class">
+          {{ statusConfig[user.status].label }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Last Login Column -->
+    <ng-container matColumnDef="lastLogin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastLogin">Last Login</th>
+      <td mat-cell *matCellDef="let user">{{ user.lastLogin | date: 'MMM d, y' }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let user">
+        <div class="action-buttons">
+          <button
+            mat-icon-button
+            matTooltip="Edit user"
+            (click)="editRequested.emit(user)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Delete user"
+            class="action-delete"
+            (click)="deleteRequested.emit(user)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<mat-paginator
+  [length]="totalCount()"
+  [pageIndex]="pageIndex()"
+  [pageSize]="pageSize()"
+  [pageSizeOptions]="[5, 10, 25]"
+  (page)="onPageChange($event)"
+  showFirstLastButtons
+  aria-label="Select page of users" />

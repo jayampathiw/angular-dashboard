@@ -1,0 +1,27 @@
+<div class="feed-card">
+  <h3 class="feed-title">Recent Activity</h3>
+
+  <div class="feed-list">
+    @for (item of items(); track item.id) {
+      <div class="feed-item">
+        <span
+          class="feed-avatar"
+          [style.background]="item.user.color"
+        >
+          {{ item.user.initials }}
+        </span>
+
+        <div class="feed-content">
+          <p class="feed-text">
+            <strong>{{ item.user.name }}</strong>
+            {{ item.action }}
+            <span class="feed-target">{{ item.target }}</span>
+          </p>
+          <span class="feed-time">{{ item.timestamp }}</span>
+        </div>
+
+        <mat-icon class="feed-icon">{{ item.icon }}</mat-icon>
+      </div>
+    }
+  </div>
+</div>

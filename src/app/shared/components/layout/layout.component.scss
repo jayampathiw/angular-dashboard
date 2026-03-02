@@ -1,0 +1,32 @@
+.layout-container {
+  height: 100vh;
+}
+
+mat-sidenav {
+  width: var(--sidebar-width);
+  transition: width 200ms ease;
+  overflow: hidden;
+  border-right: 1px solid var(--border-color);
+}
+
+// Override Angular Material's inline margin-left so both sides animate in sync
+mat-sidenav-content {
+  margin-left: var(--sidebar-width) !important;
+  transition: margin-left 200ms ease !important;
+}
+
+.sidebar-collapsed {
+  mat-sidenav {
+    width: var(--sidebar-collapsed-width);
+  }
+
+  mat-sidenav-content {
+    margin-left: var(--sidebar-collapsed-width) !important;
+  }
+}
+
+.content {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+}

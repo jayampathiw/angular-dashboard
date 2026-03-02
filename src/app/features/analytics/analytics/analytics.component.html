@@ -1,0 +1,26 @@
+<div class="analytics-page">
+  <div class="page-header">
+    <h1 class="page-title">Analytics</h1>
+    <p class="page-subtitle">Website traffic and engagement metrics</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <app-analytics-kpi-row [kpis]="store.kpis()" />
+
+  <!-- Traffic Trend (Full Width) -->
+  <section class="chart-full">
+    <app-traffic-chart
+      [data]="store.trafficData()"
+      [isDarkMode]="themeService.isDarkMode()" />
+  </section>
+
+  <!-- Channel + Device Row -->
+  <section class="charts-row">
+    <app-channel-chart
+      [data]="store.channelData()"
+      [isDarkMode]="themeService.isDarkMode()" />
+    <app-device-chart
+      [data]="store.deviceData()"
+      [isDarkMode]="themeService.isDarkMode()" />
+  </section>
+</div>

@@ -1,0 +1,22 @@
+<div class="kpi-row">
+  @for (kpi of kpis(); track kpi.id) {
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <div class="kpi-icon-wrapper">
+          <mat-icon>{{ kpi.icon }}</mat-icon>
+        </div>
+        <span
+          class="kpi-trend"
+          [class.trend-up]="kpi.trend > 0"
+          [class.trend-down]="kpi.trend < 0">
+          <mat-icon class="trend-icon">
+            {{ kpi.trend > 0 ? 'trending_up' : 'trending_down' }}
+          </mat-icon>
+          {{ kpi.trend > 0 ? '+' : '' }}{{ kpi.trend }}%
+        </span>
+      </div>
+      <span class="kpi-value">{{ formatValue(kpi) }}</span>
+      <span class="kpi-title">{{ kpi.title }}</span>
+    </div>
+  }
+</div>

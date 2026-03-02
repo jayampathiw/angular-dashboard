@@ -1,0 +1,17 @@
+<mat-sidenav-container class="layout-container" [class.sidebar-collapsed]="isCollapsed()">
+  <mat-sidenav
+    [mode]="sidenavMode()"
+    [opened]="sidenavOpened()"
+    (openedChange)="sidenavOpened.set($event)"
+  >
+    <app-sidebar />
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (menuToggle)="toggleSidenav()" />
+    <app-breadcrumbs />
+    <main class="content">
+      <router-outlet />
+    </main>
+    <app-footer />
+  </mat-sidenav-content>
+</mat-sidenav-container>

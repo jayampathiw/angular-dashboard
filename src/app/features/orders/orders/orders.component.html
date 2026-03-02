@@ -1,0 +1,29 @@
+<div class="orders-page">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class="page-title">Orders</h1>
+      <p class="page-subtitle">
+        {{ store.totalFilteredCount() }} of {{ store.totalCount() }} orders
+        &middot; {{ store.totalRevenue() | number: '1.0-0' }} total revenue
+      </p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <app-order-filters
+    (filterChanged)="onFilterChanged($event)"
+    (filtersCleared)="onFiltersCleared()" />
+
+  <!-- Table -->
+  <div class="table-card">
+    <app-order-table
+      [orders]="store.paginatedOrders()"
+      [totalCount]="store.totalFilteredCount()"
+      [pageIndex]="store.table().pageIndex"
+      [pageSize]="store.table().pageSize"
+      (sortChanged)="onSortChanged($event)"
+      (pageChanged)="onPageChanged($event)"
+      (statusChanged)="onStatusChanged($event)" />
+  </div>
+</div>

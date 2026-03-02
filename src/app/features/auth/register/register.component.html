@@ -1,0 +1,109 @@
+<div class="auth-container">
+  <mat-card class="auth-card register-card">
+    <mat-card-header>
+      <mat-card-title>Create Account</mat-card-title>
+      <mat-card-subtitle>Join us today</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (errorMessage()) {
+        <div class="error-banner">{{ errorMessage() }}</div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" formControlName="firstName" />
+          <mat-icon matPrefix>person</mat-icon>
+          @if (form.get('firstName')?.invalid && form.get('firstName')?.touched) {
+            <mat-error>{{ getFieldError('firstName') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="lastName" />
+          <mat-icon matPrefix>person_outline</mat-icon>
+          @if (form.get('lastName')?.invalid && form.get('lastName')?.touched) {
+            <mat-error>{{ getFieldError('lastName') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+          <mat-icon matPrefix>email</mat-icon>
+          @if (form.get('email')?.invalid && form.get('email')?.touched) {
+            <mat-error>{{ getFieldError('email') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword() ? 'password' : 'text'"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+            type="button"
+            [attr.aria-label]="hidePassword() ? 'Show password' : 'Hide password'"
+          >
+            <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (form.get('password')?.invalid && form.get('password')?.touched) {
+            <mat-error>{{ getFieldError('password') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            [type]="hideConfirmPassword() ? 'password' : 'text'"
+            formControlName="confirmPassword"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="toggleConfirmPasswordVisibility()"
+            type="button"
+            [attr.aria-label]="hideConfirmPassword() ? 'Show password' : 'Hide password'"
+          >
+            <mat-icon>{{ hideConfirmPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (
+            (form.get('confirmPassword')?.invalid || form.hasError('passwordMismatch')) &&
+            form.get('confirmPassword')?.touched
+          ) {
+            <mat-error>{{ getConfirmPasswordError() }}</mat-error>
+          }
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="full-width"
+          [disabled]="loading()"
+        >
+          @if (loading()) {
+            <span class="loading-state">
+              <mat-spinner diameter="20" />
+              Creating account...
+            </span>
+          } @else {
+            Create Account
+          }
+        </button>
+      </form>
+
+      <div class="auth-footer-link">
+        <p>Already have an account? <a routerLink="/auth/login">Login here</a></p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

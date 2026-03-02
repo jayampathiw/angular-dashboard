@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Edit User' : 'Create User' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="dialog-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+        @if (form.controls.firstName.hasError('required')) {
+          <mat-error>First name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+        @if (form.controls.lastName.hasError('required')) {
+          <mat-error>Last name is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+      @if (form.controls.email.hasError('required')) {
+        <mat-error>Email is required</mat-error>
+      } @else if (form.controls.email.hasError('email')) {
+        <mat-error>Enter a valid email</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          @for (role of roles; track role.value) {
+            <mat-option [value]="role.value">{{ role.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department">
+          @for (dept of departments; track dept) {
+            <mat-option [value]="dept">{{ dept }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        @for (status of statuses; track status.value) {
+          <mat-option [value]="status.value">{{ status.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="form.invalid">
+    {{ isEdit ? 'Save Changes' : 'Create User' }}
+  </button>
+</mat-dialog-actions>

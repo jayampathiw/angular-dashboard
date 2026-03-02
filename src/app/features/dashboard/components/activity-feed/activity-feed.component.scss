@@ -1,0 +1,83 @@
+.feed-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px; // M3 Medium
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-title {
+  font-size: 16px; // M3 title-medium
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+}
+
+.feed-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.feed-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px; // M3 Full
+  color: #fff;
+  font-size: 12px; // M3 label-medium
+  font-weight: 600;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.feed-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.feed-text {
+  font-size: 14px; // M3 body-medium
+  color: var(--text-secondary);
+  margin: 0 0 4px;
+  line-height: 1.4;
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+}
+
+.feed-target {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.feed-time {
+  font-size: 12px; // M3 body-small
+  color: var(--text-muted);
+}
+
+.feed-icon {
+  font-size: 16px; // M3 title-medium
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  flex-shrink: 0;
+}

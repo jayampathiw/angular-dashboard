@@ -1,0 +1,17 @@
+<div class="appearance-list">
+  <div class="appearance-item">
+    <div class="appearance-text">
+      <div class="appearance-icon-row">
+        <mat-icon>{{ isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+        <span class="appearance-label">Dark Mode</span>
+      </div>
+      <span class="appearance-desc">
+        {{ isDarkMode() ? 'Dark theme is active' : 'Light theme is active' }}
+      </span>
+    </div>
+    <mat-slide-toggle
+      [checked]="isDarkMode()"
+      (change)="themeToggled.emit()"
+      aria-label="Toggle dark mode" />
+  </div>
+</div>

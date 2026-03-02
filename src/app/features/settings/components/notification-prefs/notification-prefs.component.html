@@ -1,0 +1,57 @@
+<div class="prefs-list">
+  <div class="pref-item">
+    <div class="pref-text">
+      <span class="pref-label">Email Notifications</span>
+      <span class="pref-desc">Receive email notifications for important updates</span>
+    </div>
+    <mat-slide-toggle
+      [checked]="prefs().emailNotifications"
+      (change)="onToggle('emailNotifications', $event.checked)" />
+  </div>
+
+  <div class="pref-item">
+    <div class="pref-text">
+      <span class="pref-label">Security Alerts</span>
+      <span class="pref-desc">Get notified about security events and suspicious activity</span>
+    </div>
+    <mat-slide-toggle
+      [checked]="prefs().securityAlerts"
+      (change)="onToggle('securityAlerts', $event.checked)" />
+  </div>
+
+  <div class="pref-item">
+    <div class="pref-text">
+      <span class="pref-label">Product Updates</span>
+      <span class="pref-desc">Stay informed about new features and improvements</span>
+    </div>
+    <mat-slide-toggle
+      [checked]="prefs().productUpdates"
+      (change)="onToggle('productUpdates', $event.checked)" />
+  </div>
+
+  <div class="pref-item">
+    <div class="pref-text">
+      <span class="pref-label">Marketing Emails</span>
+      <span class="pref-desc">Receive promotional offers and newsletters</span>
+    </div>
+    <mat-slide-toggle
+      [checked]="prefs().marketingEmails"
+      (change)="onToggle('marketingEmails', $event.checked)" />
+  </div>
+
+  <div class="pref-item">
+    <div class="pref-text">
+      <span class="pref-label">Notification Frequency</span>
+      <span class="pref-desc">How often you want to receive notification digests</span>
+    </div>
+    <mat-form-field appearance="outline" class="freq-select">
+      <mat-select
+        [value]="prefs().frequency"
+        (selectionChange)="onFrequencyChange($event.value)">
+        <mat-option value="immediate">Immediate</mat-option>
+        <mat-option value="daily">Daily Digest</mat-option>
+        <mat-option value="weekly">Weekly Digest</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
